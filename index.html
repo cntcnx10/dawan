@@ -1,129 +1,195 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
-    <title>Saimai Portfolio | Logistics & Art</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saimai Portfolio | Logistics & Digital Artist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-purple: #6d28d9;
-            --light-purple: #f3e8ff;
-            --accent-gold: #ffcc00;
+            --dark-bg: #0b0b0f;
+            --deep-purple: #1a1033;
+            --main-purple: #7c3aed;
+            --light-purple: #a78bfa;
+            --cat-orange: #ff9d42;
+            --text-gray: #d1d5db;
         }
+
         body {
-            font-family: 'Sarabun', sans-serif;
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            font-family: 'Kanit', sans-serif;
             margin: 0;
-            background-color: #fafafa;
-            color: #333;
-            line-height: 1.6;
+            padding: 0;
+            background-image: radial-gradient(circle at 10% 20%, var(--deep-purple) 0%, var(--dark-bg) 80%);
         }
-        .header {
-            background: linear-gradient(135deg, #2d1b69 0%, var(--primary-purple) 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
+
         .container {
-            max-width: 900px;
-            margin: -40px auto 40px;
-            background: white;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Profile Header */
+        .profile-card {
+            background: rgba(26, 16, 51, 0.6);
+            border: 1px solid var(--main-purple);
+            border-radius: 24px;
             padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        h1 { margin-bottom: 10px; }
-        .student-info {
-            color: var(--light-purple);
-            font-size: 1.1em;
-        }
-        .intro-section {
             text-align: center;
-            border-bottom: 2px solid var(--light-purple);
-            padding-bottom: 30px;
-            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .tagline {
-            display: inline-block;
-            background: var(--accent-gold);
-            color: #2d1b69;
-            padding: 5px 15px;
-            font-weight: bold;
-            border-radius: 5px;
-            margin-bottom: 15px;
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--light-purple);
+            box-shadow: 0 0 20px rgba(167, 139, 250, 0.5);
+            margin-bottom: 20px;
         }
+
+        .cat-decoration {
+            position: absolute;
+            width: 100px;
+            top: -40px;
+            right: 20px;
+            filter: drop-shadow(0 0 10px var(--cat-orange));
+            z-index: -1; 
+        }
+        
+        .profile-card:hover .cat-decoration {
+            z-index: 1; 
+        }
+
+        h1 { color: var(--light-purple); font-size: 2.5rem; margin-bottom: 5px; }
+        .subtitle { color: var(--cat-orange); font-size: 1.2rem; margin-bottom: 20px; }
+
+        /* Content Section */
+        .intro-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            border-left: 4px solid var(--main-purple);
+            padding-left: 20px;
+        }
+
+        /* Skill Grid */
         .skill-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
-        .skill-card {
-            background: var(--light-purple);
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 5px solid var(--primary-purple);
+
+        .skill-item {
+            background: linear-gradient(145deg, #16161d, #1e103d);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            transition: 0.3s;
         }
-        .skill-card h3 {
-            margin-top: 0;
-            color: var(--primary-purple);
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--main-purple);
+            box-shadow: 0 10px 20px rgba(124, 58, 237, 0.2);
         }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 8px; }
+
+        .skill-item h3 {
+            color: var(--light-purple);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-item h3::before { content: '🐾'; font-size: 1.2rem; }
+
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 12px; color: var(--text-gray); font-size: 0.95rem; }
+        li b { color: var(--cat-orange); }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: var(--main-purple);
+            font-size: 0.8rem;
+            padding-bottom: 40px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1 th:text="'ยินดีต้อนรับสู่หน้าเว็บของ ' + ${fullName}"></h1>
-        <div class="student-info">
-            <span th:text="${studentId}"></span> | 
-            <span th:text="${faculty}"></span>
+<div class="container">
+    <!-- Profile Section -->
+    <div class="profile-card">
+        <!-- ใส่รูปโปรไฟล์ตรงนี้ -->
+        <img src="ดาหวัน.jpg" alt="Saimai Profile Image" class="profile-image">
+        
+        <!-- รูปตกแต่งแมวส้ม -->
+        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Ginger&backgroundColor=ff9d42" alt="Cute Orange Cat" class="cat-decoration">
+        
+        <h1>ยินดีต้อนรับสู่หน้าเว็บของ ดาหวัน โปรยกระโทก</h1>
+        <div class="subtitle">นางสาวดาหวัน โปรยกระโทก (สายไหม) | 6650100641</div>
+        <p>คณะการจัดการโลจิสติกส์และการคมนาคมขนส่ง (PIM)</p>
+    </div>
+
+    <!-- Intro Section -->
+    <div class="intro-text">
+        <h2 style="color: var(--main-purple);">"Logistics Student & Digital Artist"</h2>
+        สวัสดีค่ะ ฉันเป็นนักศึกษาชั้นปีที่ 3 ที่หลงใหลในการเชื่อมโยงโลกแห่งการขนส่งเข้ากับนวัตกรรมสมัยใหม่ และรักการสร้างสรรค์งานศิลปะในเวลาว่าง
+    </div>
+
+    <h2 style="text-align: center; color: var(--light-purple); margin-bottom: 30px;">ทักษะความสามารถ</h2>
+
+    <!-- Skill Grid Section -->
+    <div class="skill-grid">
+        <div class="skill-item">
+            <h3>1. ทักษะการจัดการข้อมูล</h3>
+            <ul>
+                <li><b>Advanced Excel:</b> สูตร VLOOKUP, Pivot Tables สำหรับ Dashboard การเงิน</li>
+                <li><b>Automation:</b> เชื่อมต่อ Make.com และ Google Forms ลดการกรอกมือ</li>
+                <li><b>e-Wallet:</b> ระบบแยกบัญชีและรายงาน Export ข้อมูลทันที</li>
+            </ul>
+        </div>
+
+        <div class="skill-item">
+            <h3>2. การสื่อสารและเจรจา</h3>
+            <ul>
+                <li><b>Assertive:</b> การทวงถามอย่างสุภาพและหนักแน่นเพื่อส่วนรวม</li>
+                <li><b>Transparency:</b> สรุปยอดผ่าน Infographic ให้เพื่อนๆ มั่นใจ</li>
+                <li><b>Negotiation:</b> ต่อรอง Supplier ในงาน Bye'Nior ให้คุ้มค่าที่สุด</li>
+            </ul>
+        </div>
+
+        <div class="skill-item">
+            <h3>3. วางแผนการเงิน (Logistics Base)</h3>
+            <ul>
+                <li><b>Forecasting:</b> พยากรณ์รายจ่ายล่วงหน้าแม่นยำ</li>
+                <li><b>Buffer Management:</b> ตั้งงบ Safety Stock ของเงินทุน</li>
+                <li><b>Internal Control:</b> ระบบตรวจสอบ 2 ชั้น เพื่อความโปร่งใส</li>
+            </ul>
+        </div>
+
+        <div class="skill-item">
+            <h3>4. การคิดอย่างเป็นระบบ</h3>
+            <ul>
+                <li><b>SOP:</b> คู่มือการเก็บเงินที่ทุกคนในห้องเข้าใจตรงกัน</li>
+                <li><b>Problem Solving:</b> การ Reconciliation ยอดเงินไม่ตรงอย่างมืออาชีพ</li>
+            </ul>
         </div>
     </div>
 
-    <div class="container">
-        <div class="intro-section">
-            <div class="tagline">Logistics Student & Digital Artist</div>
-            <p>สวัสดีค่ะ ฉันเป็นนักศึกษาชั้นปีที่ 3 ที่หลงใหลในการเชื่อมโยงโลกแห่งการขนส่งเข้ากับนวัตกรรมสมัยใหม่ และรักการสร้างสรรค์งานศิลปะในเวลาว่าง</p>
-        </div>
-
-        <h2 style="color: var(--primary-purple); text-align: center;">ทักษะและความสามารถ</h2>
-
-        <div class="skill-grid">
-            <div class="skill-card">
-                <h3>1. Digital Tools Management</h3>
-                <ul>
-                    <li><b>Advanced Excel:</b> VLOOKUP, Pivot Tables สำหรับ Dashboard การเงิน</li>
-                    <li><b>Automation:</b> ใช้ Make.com และ Google Forms เชื่อมต่อข้อมูล</li>
-                    <li><b>e-Wallet Tracking:</b> ระบบบันทึกรายรับ-จ่ายแบบ Digital</li>
-                </ul>
-            </div>
-
-            <div class="skill-card">
-                <h3>2. Communication & Negotiation</h3>
-                <ul>
-                    <li><b>Assertive Communication:</b> ทวงถามอย่างสุภาพและเป็นระบบ</li>
-                    <li><b>Transparency:</b> สรุปยอดเงินด้วย Infographic ที่อ่านง่าย</li>
-                    <li><b>Negotiation:</b> ต่อรองกับ Supplier สำหรับกิจกรรม Bye'Nior</li>
-                </ul>
-            </div>
-
-            <div class="skill-card">
-                <h3>3. Financial Planning</h3>
-                <ul>
-                    <li><b>Forecasting:</b> พยากรณ์รายจ่ายล่วงหน้าไม่ให้เงินขาดมือ</li>
-                    <li><b>Buffer Management:</b> การตั้ง Safety Stock ของเงินทุนสำรอง</li>
-                    <li><b>Internal Control:</b> ระบบตรวจสอบยืนยันยอดเพื่อความโปร่งใส</li>
-                </ul>
-            </div>
-
-            <div class="skill-card">
-                <h3>4. Systematic Thinking</h3>
-                <ul>
-                    <li><b>SOP:</b> เขียนคู่มือการเก็บเงิน (Standard Operating Procedure)</li>
-                    <li><b>Problem Solving:</b> การ Reconciliation ยอดเงินอย่างเป็นขั้นตอน</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <footer>
+        <p>สร้างสรรค์ด้วยความรักในโลจิสติกส์และแมวส้ม 🐈🧡</p>
+    </footer>
+</div>
 
 </body>
 </html>
