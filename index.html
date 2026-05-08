@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Saimai Portfolio | Logistics & Art</title>
+    <style>
+        :root {
+            --primary-purple: #6d28d9;
+            --light-purple: #f3e8ff;
+            --accent-gold: #ffcc00;
+        }
+        body {
+            font-family: 'Sarabun', sans-serif;
+            margin: 0;
+            background-color: #fafafa;
+            color: #333;
+            line-height: 1.6;
+        }
+        .header {
+            background: linear-gradient(135deg, #2d1b69 0%, var(--primary-purple) 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: -40px auto 40px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        h1 { margin-bottom: 10px; }
+        .student-info {
+            color: var(--light-purple);
+            font-size: 1.1em;
+        }
+        .intro-section {
+            text-align: center;
+            border-bottom: 2px solid var(--light-purple);
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+        }
+        .tagline {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: #2d1b69;
+            padding: 5px 15px;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .skill-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .skill-card {
+            background: var(--light-purple);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary-purple);
+        }
+        .skill-card h3 {
+            margin-top: 0;
+            color: var(--primary-purple);
+        }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1 th:text="'ยินดีต้อนรับสู่หน้าเว็บของ ' + ${fullName}"></h1>
+        <div class="student-info">
+            <span th:text="${studentId}"></span> | 
+            <span th:text="${faculty}"></span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="intro-section">
+            <div class="tagline">Logistics Student & Digital Artist</div>
+            <p>สวัสดีค่ะ ฉันเป็นนักศึกษาชั้นปีที่ 3 ที่หลงใหลในการเชื่อมโยงโลกแห่งการขนส่งเข้ากับนวัตกรรมสมัยใหม่ และรักการสร้างสรรค์งานศิลปะในเวลาว่าง</p>
+        </div>
+
+        <h2 style="color: var(--primary-purple); text-align: center;">ทักษะและความสามารถ</h2>
+
+        <div class="skill-grid">
+            <div class="skill-card">
+                <h3>1. Digital Tools Management</h3>
+                <ul>
+                    <li><b>Advanced Excel:</b> VLOOKUP, Pivot Tables สำหรับ Dashboard การเงิน</li>
+                    <li><b>Automation:</b> ใช้ Make.com และ Google Forms เชื่อมต่อข้อมูล</li>
+                    <li><b>e-Wallet Tracking:</b> ระบบบันทึกรายรับ-จ่ายแบบ Digital</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <h3>2. Communication & Negotiation</h3>
+                <ul>
+                    <li><b>Assertive Communication:</b> ทวงถามอย่างสุภาพและเป็นระบบ</li>
+                    <li><b>Transparency:</b> สรุปยอดเงินด้วย Infographic ที่อ่านง่าย</li>
+                    <li><b>Negotiation:</b> ต่อรองกับ Supplier สำหรับกิจกรรม Bye'Nior</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <h3>3. Financial Planning</h3>
+                <ul>
+                    <li><b>Forecasting:</b> พยากรณ์รายจ่ายล่วงหน้าไม่ให้เงินขาดมือ</li>
+                    <li><b>Buffer Management:</b> การตั้ง Safety Stock ของเงินทุนสำรอง</li>
+                    <li><b>Internal Control:</b> ระบบตรวจสอบยืนยันยอดเพื่อความโปร่งใส</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <h3>4. Systematic Thinking</h3>
+                <ul>
+                    <li><b>SOP:</b> เขียนคู่มือการเก็บเงิน (Standard Operating Procedure)</li>
+                    <li><b>Problem Solving:</b> การ Reconciliation ยอดเงินอย่างเป็นขั้นตอน</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
